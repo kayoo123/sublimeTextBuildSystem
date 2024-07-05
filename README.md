@@ -5,22 +5,30 @@ I'm sharing this project in order to group together build scripts for carrying o
 
 ## GitURLToClipboard
 
-#### 1. Create a PowerShell script : `git_url_to_clipboard.ps1`
+This first script copies the current project file to a clipboard and opens it in the browser.
+
+#### 1. Create a PowerShell script : 
+
+> C:\PATH\TO\SCRIPT\git_url_to_clipboard.ps1
+
 ```ps1
-# Récupérer l'URL du dépôt git et la transformer en HTTPS
+# Retrieve the URL from the git repository and convert it to HTTPS
 $url = git config --get remote.origin.url
 $httpsUrl = $url -replace 'git@([^:]*):(.*).git', 'https://$1/$2'
 
-# Copier l'URL transformée dans le presse-papiers
+# Copy the transformed URL to the clipboard
 $httpsUrl | Set-Clipboard
 
-# Ouvrir l'URL dans le navigateur par défaut
+# Open the URL in the default browser
 Start-Process $httpsUrl
 ```
 
-#### 2. Create a Build System : `GitURLToClipboard.sublime-build`
+#### 2. Create a Build System : 
 
- `Tools` > `Build System` > `New Build System...`
+`Tools` > `Build System` > `New Build System...`
+
+> GitURLToClipboard.sublime-build
+
 ```json
 {
     "cmd": ["powershell", "-ExecutionPolicy", "Bypass", "-File", "C:\\PATH\\TO\\SCRIPT\\git_url_to_clipboard.ps1"],
@@ -29,6 +37,7 @@ Start-Process $httpsUrl
     "selector": "source.shell"
 }
 ```
+
 #### 3. Usage 
 
 - Select :  `Tools` > `Build System` > `GitURLToClipboard`

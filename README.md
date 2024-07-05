@@ -5,7 +5,7 @@ I'm sharing this project in order to group together build scripts for carrying o
 
 ## GitURLToClipboard
 
-#### Create a PowerShell script : `git_url_to_clipboard.ps1`
+#### 1. Create a PowerShell script : `git_url_to_clipboard.ps1`
 ```ps1
 # Récupérer l'URL du dépôt git et la transformer en HTTPS
 $url = git config --get remote.origin.url
@@ -18,7 +18,7 @@ $httpsUrl | Set-Clipboard
 Start-Process $httpsUrl
 ```
 
-#### Create a Build System : `GitURLToClipboard.sublime-build`
+#### 2. Create a Build System : `GitURLToClipboard.sublime-build`
 
  `Tools` > `Build System` > `New Build System...`
 ```json
@@ -29,7 +29,7 @@ Start-Process $httpsUrl
     "selector": "source.shell"
 }
 ```
-#### Usage 
+#### 3. Usage 
 
 - Select :  `Tools` > `Build System` > `GitURLToClipboard`
 - Press : `Ctrl + B` on any open file !
